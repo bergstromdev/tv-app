@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Router, RouteComponentProps } from "@reach/router";
+import "./App.css";
+import Search from "./Pages/Search";
+import Detail from "./Pages/Detail";
+import ContextProvider from "./context";
+
+let SearchPage = (props: RouteComponentProps) => <Search />;
+let DetailPage = (props: RouteComponentProps) => <Detail />;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextProvider>
+      <Router>
+        <SearchPage path="/" />
+        <DetailPage path="/shows/:id" />
+      </Router>
+    </ContextProvider>
   );
 }
 
